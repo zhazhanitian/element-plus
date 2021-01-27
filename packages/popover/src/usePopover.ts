@@ -1,6 +1,6 @@
 import type { SetupContext } from 'vue'
 import { computed, ref, watch } from 'vue'
-import { isString } from '@element-plus/utils/util'
+import { addUnit } from '@element-plus/utils/util'
 import type { IPopperOptions } from '@element-plus/popper'
 import { usePopper } from '@element-plus/popper'
 import PopupManager from '@element-plus/utils/popup-manager'
@@ -15,12 +15,7 @@ export const HIDE_EVENT = 'hide'
 
 export default function usePopover(props: IUsePopover, ctx: SetupContext<string[]>) {
   const zIndex = ref(PopupManager.nextZIndex())
-  const width = computed(() => {
-    if (isString(props.width)) {
-      return props.width as string
-    }
-    return props.width + 'px'
-  })
+  const width = computed(() => addUnit(props.width))
 
   const popperStyle = computed(() => {
     return {
