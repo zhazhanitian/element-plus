@@ -131,12 +131,14 @@ export default defineComponent({
 
     useEventListener(scrollContainer, 'scroll', onScroll)
     useResizeObserver(root, () => update())
+    useResizeObserver(target, () => update())
 
     return {
       root,
       state,
       rootStyle,
       affixStyle,
+      update,
     }
   },
 })
